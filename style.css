@@ -1,0 +1,15 @@
+.invalid > t {
+  color: red;
+}
+
+[id="1.0"] {
+  display: inline-block;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+[id="2.0"]{
+  display: inline-block;
+  border: 2px solid black;
+  padding: 10px;
+}

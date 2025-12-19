@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Smb2 dynamic patcher</title>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Smb2 dynamic patcher</h1>
+      <input type="file" id="fileInput" name="smb2" accept=".nes">
+      <br></br>
+      <t id="text">No ROM currently loaded</t>
+      <br></br>
+      <input type="file" id="patchInput" name="patch" accept=".bps">
+      <br></br>
+      <t id="patchText">No Patch currenctly loaded</t>
+      <br></br>
+      <button id="patch" style="display: none;">Apply patch</button>
+    </div>
+    <script src="HashCalculator.js"></script>
+    <script src="BinFile.js"></script>
+    <script src="RomPatcher.format.bps.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
