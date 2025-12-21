@@ -1,15 +1,62 @@
-.invalid > t {
-  color: red;
+body {
+  color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #0c0a14;
+  padding: 0 20px 20px 20px;
+  border: 5px groove rgb(47, 9, 171);
+  font-size: 16px;
+  font-family: 'Open Sans';
 }
 
-[id="1.0"] {
-  display: inline-block;
-  border: 2px solid black;
-  padding: 10px;
+.Row {
+  display: flex;
+  flex-flow: nowrap;
+  gap: 30px;
+  line-height: 1.8;
 }
 
-[id="2.0"]{
-  display: inline-block;
-  border: 2px solid black;
-  padding: 10px;
+.text-left {
+  width: 15%;
+  text-align: right;
+}
+
+.File-input {
+  border-radius: 10px 10px 10px 10px;
+  background-color: rgb(64, 20, 126);
+  flex-grow: 1;
+}
+
+.input-button {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+.File-input label {
+  display: block;
+  text-align: center;
+}
+
+.File-input label:hover {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+
+
+.Patch {
+  display: block;
+  border-radius: 10px;
+  width: 50%;
+  /* padding: 20%; */
+  /* pad */
+  background-color: rgb(64, 20, 126);
+  text-align: center;
+}
+
+.Patch:hover {
+  background-color: rgba(0, 255, 255, 0.2);
 }

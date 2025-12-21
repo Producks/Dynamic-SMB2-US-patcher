@@ -1,6 +1,7 @@
 const fileInput = document.getElementById('fileInput');
 const patchInput = document.getElementById('patchInput');
 const patch = document.getElementById('patch');
+const patch_text = document.getElementById('Patch-Text');
 
 const iNes1_0Header = [0x4E, 0x45, 0x53, 0x1A, 0x08, 0x10, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 const iNes2_0Header = [0x4E, 0x45, 0x53, 0x1A, 0x08, 0x10, 0x40, 0x08, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01];
@@ -8,6 +9,8 @@ const CRC32_1_0 = "7D3F6F3D";
 const CRC32_2_0 = "43507232";
 const CRC32_A_1_0 = "E0CA425C";
 const CRC32_A_2_0 = "DEA55F53";
+
+const INVALID_REV = -1;
 
 var romFile;
 var crc32HashRom;
@@ -26,31 +29,16 @@ fileInput.addEventListener('change', async () => {
   romFile = new BinFile(await file.arrayBuffer());
   crc32HashRom = romFile.hashCRC32().toString(16).padStart(8, "0").toUpperCase();
 
-  switch (crc32HashRom) {
-    case CRC32_1_0:
-      text.textContent = "iNES 1.0 rom loaded";
-      romRev = 0;
-      break;
-    case CRC32_2_0:
-      text.textContent = "iNES 2.0 rom loaded";
-      romRev = 0;
-      break;
-    case CRC32_A_1_0:
-      text.textContent = "iNES 1.0 Rev A rom loaded";
-      romRev = 1;
-      break;
-    case CRC32_A_2_0:
-      text.textContent = "iNES 2.0 Rev A rom loaded";
-      romRev = 1;
-      break;
-    default:
-      text.textContent = "Invalid Smb2 ROM"
-      one.style.display = 'none';
-      two.style.display = 'none';
-      romLoaded = false;
-      patch.style.display = 'none';
-      return;
+  romRev = get_rev(crc32HashRom);
+  if (romRev == INVALID_REV) {
+    text.textContent = "Invalid Smb2 ROM"
+    one.style.display = 'none';
+    two.style.display = 'none';
+    romLoaded = false;
+    patch.style.display = 'none';
+    return;
   }
+  text.textContent = "Valid Smb2 ROM"
   romLoaded = true;
   if (patchLoaded && romLoaded)
     patch.style.display = 'block';
@@ -68,20 +56,15 @@ patchInput.addEventListener('change', async () => {
   } catch (e) {
     console.log(e);
   }
-  switch (crc32BPS) {
-    case CRC32_1_0:
-    case CRC32_2_0:
-      patchRev = 0;
-      break;
-    case CRC32_A_1_0:
-      patchRev = 1;
-      break;
-    default:
-      patchText.textContent = "Invalid SMB2 USA patch";
-      patchLoaded = false;
-      patch.style.display = 'none';
-      return;
+  patchRev = get_rev(crc32BPS);
+  if (patchRev == INVALID_REV) {
+    patch_text.textContent = "Invalid SMB2 USA patch";
+    patchLoaded = false;
+    patch.style.display = 'none';
+    return;
   }
+  patch_text.textContent = "Valid SMB2 USA patch";
+  patch_text.style.color = "green";
   patchLoaded = true;
   if (patchLoaded && romLoaded)
     patch.style.display = 'block';
@@ -112,4 +95,17 @@ async function swap_rev() {
 async function fetchPatch(patch_path) {
   const fetched_patch = await fetch(patch_path);
   return BPS.fromFile(new BinFile(await fetched_patch.arrayBuffer()));
+}
+
+function get_rev(crc32) {
+  switch (crc32) {
+    case CRC32_1_0:
+    case CRC32_2_0:
+     return 0;
+    case CRC32_A_1_0:
+    case CRC32_A_2_0:
+      return 1;
+    default:
+      return -1;
+  }
 }

@@ -5,21 +5,54 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="favicon.ico">
     <link href="style.css" rel="stylesheet" />
-    <title>Smb2 dynamic patcher</title>
+    <title>BPS SMB2 Patcher</title>
   </head>
   <body>
     <div id="content">
-      <h1>Smb2 dynamic patcher</h1>
-      <input type="file" id="fileInput" name="smb2" accept=".nes">
+      <h1 style="text-align: center;">BPS Super Mario Bros. 2 Patcher</h1>
+      <p>
+        This patcher will automatically adapt the iNES header and the rom revision to match the BPS patch you have.
+      </p>
+
+      <!-- Rom row -->
+      <div class="Row">
+        <div class="text-left">
+          ROM:
+        </div>
+        <div class="File-input">
+          <label>
+            <span id="Rom-Text">Upload SMB2 rom</span>
+            <input class="input-button" type="file" id="fileInput" name="smb2" accept=".nes">
+          </label>
+        </div>
+      </div>
+
       <br></br>
-      <t id="text">No ROM currently loaded</t>
+      <!-- Patch row -->
+      <div class="Row">
+        <div class="text-left">
+          Patch:
+        </div>
+        <div class="File-input">
+          <label>
+            <span id="Patch-Text">Upload BPS patch</span>
+            <input class="input-button" type="file" id="patchInput" name="patch" accept=".bps">
+          </label>
+        </div>
+        <button id="patch" style="display: none;">Apply patch</button>
+      </div>
+
       <br></br>
-      <input type="file" id="patchInput" name="patch" accept=".bps">
-      <br></br>
-      <t id="patchText">No Patch currenctly loaded</t>
-      <br></br>
-      <button id="patch" style="display: none;">Apply patch</button>
+      <div class="Patch">
+          <span>Apply patch</span>
+      </div>
     </div>
+
+
+    <!-- By Producks -->
+    
+
+
     <script src="HashCalculator.js"></script>
     <script src="BinFile.js"></script>
     <script src="RomPatcher.format.bps.js"></script>
