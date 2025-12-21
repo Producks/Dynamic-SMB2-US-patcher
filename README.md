@@ -1,2 +1,2 @@
 # BPS-SMB2-Patcher
-TODO add text later. Fix css and cleanup code.
+https://producks.github.io/BPS-SMB2-Patcher/
