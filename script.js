@@ -1,7 +1,10 @@
 const fileInput = document.getElementById('fileInput');
 const patchInput = document.getElementById('patchInput');
-const patch = document.getElementById('patch');
-const patch_text = document.getElementById('Patch-Text');
+const patch = document.getElementById('Patch');
+const rom_name = document.getElementById('Rom-Text');
+const patch_name = document.getElementById('Patch-Text');
+const confirmation_rom = document.getElementById('Confirmation-Rom');
+const confirmation_patch = document.getElementById('Confirmation-Patch');
 
 const iNes1_0Header = [0x4E, 0x45, 0x53, 0x1A, 0x08, 0x10, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 const iNes2_0Header = [0x4E, 0x45, 0x53, 0x1A, 0x08, 0x10, 0x40, 0x08, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01];
@@ -17,6 +20,7 @@ var crc32HashRom;
 var romRev;
 var romLoaded = false;
 
+var patch_file_name;
 var bpsPatch;
 var crc32BPS;
 var patchRev;
@@ -27,21 +31,22 @@ fileInput.addEventListener('change', async () => {
   if (!file)
     return;
   romFile = new BinFile(await file.arrayBuffer());
+  romFile.setName(fileInput.files[0].name);
   crc32HashRom = romFile.hashCRC32().toString(16).padStart(8, "0").toUpperCase();
 
   romRev = get_rev(crc32HashRom);
   if (romRev == INVALID_REV) {
-    text.textContent = "Invalid Smb2 ROM"
-    one.style.display = 'none';
-    two.style.display = 'none';
-    romLoaded = false;
+    confirmation_rom.style.display = "block";
+    rom_name.textContent = "Upload SMB2 rom";
     patch.style.display = 'none';
+    romLoaded = false;
     return;
   }
-  text.textContent = "Valid Smb2 ROM"
+  confirmation_rom.style.display = "none";
+  rom_name.textContent = romFile.getName();
   romLoaded = true;
   if (patchLoaded && romLoaded)
-    patch.style.display = 'block';
+    patch.style.display = 'flex';
 });
 
 patchInput.addEventListener('change', async () => {
@@ -50,6 +55,8 @@ patchInput.addEventListener('change', async () => {
     return;
   try {
     const bpsFile = new BinFile(await file.arrayBuffer());
+    patch_file_name = patchInput.files[0].name;
+    console.log(patchInput.files[0].name);
     bpsPatch = BPS.fromFile(bpsFile);
     crc32BPS = bpsPatch.sourceChecksum.toString(16).toUpperCase().padStart(8, '0');
     console.log(crc32BPS);
@@ -58,16 +65,16 @@ patchInput.addEventListener('change', async () => {
   }
   patchRev = get_rev(crc32BPS);
   if (patchRev == INVALID_REV) {
-    patch_text.textContent = "Invalid SMB2 USA patch";
+    patch_text.style.display = 'block';
+    patch_name.textContent = "Upload BPS patch";
     patchLoaded = false;
     patch.style.display = 'none';
     return;
   }
-  patch_text.textContent = "Valid SMB2 USA patch";
-  patch_text.style.color = "green";
+  patch_name.textContent = patch_file_name;
   patchLoaded = true;
   if (patchLoaded && romLoaded)
-    patch.style.display = 'block';
+    patch.style.display = 'flex';
 });
 
 patch.addEventListener('click',  async() => {

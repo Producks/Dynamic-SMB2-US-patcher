@@ -12,6 +12,7 @@
       <h1 style="text-align: center;">BPS Super Mario Bros. 2 Patcher</h1>
       <p>
         This patcher will automatically adapt the iNES header and the rom revision to match the BPS patch you have.
+        Only support the NTSC version. If your rom is invalid you either got a bad dump or the wrong region.
       </p>
 
       <!-- Rom row -->
@@ -26,8 +27,11 @@
           </label>
         </div>
       </div>
-
-      <br></br>
+      <!-- Rom confirmation -->
+      <div class="Confirmation">
+        <span id="Confirmation-Rom" style="display: none;">Invalid Smb2 ROM</span>
+      </div>
+      
       <!-- Patch row -->
       <div class="Row">
         <div class="text-left">
@@ -39,19 +43,32 @@
             <input class="input-button" type="file" id="patchInput" name="patch" accept=".bps">
           </label>
         </div>
-        <button id="patch" style="display: none;">Apply patch</button>
       </div>
+      <!-- Patch confirmation -->
+      <div class="Confirmation">
+        <span id="Confirmation-Patch" style="display: none;">Invalid SMB2 BPS patch</span>
+      </div>
+      
+      <!-- Patch button -->
+      <button id="Patch">Apply patch</button>
+      <!-- <div id="Patch">
 
-      <br></br>
-      <div class="Patch">
           <span>Apply patch</span>
-      </div>
+      </div> -->
     </div>
 
-
-    <!-- By Producks -->
-    
-
+    <!-- Credit -->
+    <div id="Credit">
+      <div>
+        <a href="https://github.com/Producks/Dynamic-SMB2-US-patcher">Source code</a>
+      </div>
+      <div>
+        Rom patcher JS by
+        <small>
+          <a href="https://www.marcrobledo.com/">Marc Robledo</a>
+        </small>
+      </div>
+    </div>
 
     <script src="HashCalculator.js"></script>
     <script src="BinFile.js"></script>

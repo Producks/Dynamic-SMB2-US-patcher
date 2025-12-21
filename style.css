@@ -45,18 +45,52 @@ body {
   background: rgba(0, 255, 255, 0.2);
 }
 
-
-
-.Patch {
-  display: block;
-  border-radius: 10px;
-  width: 50%;
-  /* padding: 20%; */
-  /* pad */
-  background-color: rgb(64, 20, 126);
+.Confirmation {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 120px;
   text-align: center;
+  color: red;
 }
 
-.Patch:hover {
-  background-color: rgba(0, 255, 255, 0.2);
+#Credit {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+#Credit a {
+  color: rgb(165, 14, 132);
+}
+
+#Credit div:last-child {
+  text-align: right;
+}
+
+#Patch {
+  cursor: pointer;
+  width: 35%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}
+
+button {
+  font-size: 17px;
+  padding: 0.5em 2em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background: rgb(64, 20, 126);
+  color: white;
+  border-radius: 4px;
+}
+
+button:hover {
+ background: rgb(2,0,36);
+ background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+button:active {
+ transform: translate(0em, 0.2em);
 }
