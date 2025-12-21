@@ -88,7 +88,7 @@ button {
 
 button:hover {
  background: rgb(2,0,36);
- background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+ background: linear-gradient(90deg, rgb(153, 0, 255) 0%, rgb(64, 20, 126) 100%);
 }
 
 button:active {

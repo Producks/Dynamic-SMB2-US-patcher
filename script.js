@@ -79,7 +79,9 @@ patchInput.addEventListener('change', async () => {
 
 patch.addEventListener('click',  async() => {
   await validate_rom();
-  bpsPatch.apply(romFile).save();
+  var newFile = bpsPatch.apply(romFile);
+  newFile.fileName = patch_file_name.replace(/\.bps$/i, "") + ".nes";
+  newFile.save();
 });
 
 async function validate_rom() {
