@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- WEB DEV SUCKS SO MUCH ASS ZZZZZZZ -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <link href="style.css" rel="stylesheet" />
-    <title>BPS SMB2 Patcher</title>
-  </head>
-  <body>
-    <div id="content">
-      <h1 style="text-align: center;">BPS Super Mario Bros. 2 Patcher</h1>
-      <p>
-        This patcher will automatically adapt the iNES header and the rom revision to match the BPS patch you have.
-        Only support the NTSC version. If your rom is invalid you either got a bad dump or the wrong region.
-      </p>
 
-      <!-- Rom row -->
-      <div class="Row">
-        <div class="text-left">
-          ROM:
-        </div>
-        <div class="File-input">
-          <label>
-            <span id="Rom-Text">Upload SMB2 rom</span>
-            <input class="input-button" type="file" id="fileInput" name="smb2" accept=".nes">
-          </label>
-        </div>
-      </div>
-      <!-- Rom confirmation -->
-      <div class="Confirmation">
-        <span id="Confirmation-Rom" style="display: none;">Invalid Smb2 ROM</span>
-      </div>
-      
-      <!-- Patch row -->
-      <div class="Row">
-        <div class="text-left">
-          Patch:
-        </div>
-        <div class="File-input">
-          <label>
-            <span id="Patch-Text">Upload BPS patch</span>
-            <input class="input-button" type="file" id="patchInput" name="patch" accept=".bps">
-          </label>
-        </div>
-      </div>
-      <!-- Patch confirmation -->
-      <div class="Confirmation">
-        <span id="Confirmation-Patch" style="display: none;">Invalid SMB2 BPS patch</span>
-      </div>
-      
-      <!-- Patch button -->
-      <button id="Patch">Apply patch</button>
-    </div>
+<head>
+  <!-- WEB DEV SUCKS SO MUCH ASS ZZZZZZZ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link href="style.css" rel="stylesheet" />
+  <title>BPS SMB2 Patcher</title>
+</head>
 
-    <!-- Credit -->
-    <div id="Credit">
-      <div>
-        <a href="https://github.com/Producks/Dynamic-SMB2-US-patcher">Source code</a>
+<body>
+  <div id="content">
+    <h1 style="text-align: center;">BPS Super Mario Bros. 2 Patcher</h1>
+    <p>
+      This patcher will automatically adapt the iNES header and the rom revision to match the BPS patch you have.
+      Only supports the NTSC version. If your rom is invalid, you either have a bad dump or the wrong region.
+    </p>
+
+    <!-- Rom row -->
+    <div class="Row">
+      <div class="text-left">
+        ROM:
       </div>
-      <div>
-        Rom patcher JS by
-        <small>
-          <a href="https://www.marcrobledo.com/">Marc Robledo</a>
-        </small>
+      <div class="File-input">
+        <label>
+          <span id="Rom-Text">Upload SMB2 rom</span>
+          <input class="input-button" type="file" id="fileInput" name="smb2" accept=".nes">
+        </label>
       </div>
     </div>
+    <!-- Rom confirmation -->
+    <div class="Confirmation">
+      <span id="Confirmation-Rom" style="display: none;">Invalid SMB2 rom</span>
+    </div>
 
-    <script src="HashCalculator.js"></script>
-    <script src="BinFile.js"></script>
-    <script src="RomPatcher.format.bps.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <!-- Patch row -->
+    <div class="Row">
+      <div class="text-left">
+        Patch:
+      </div>
+      <div class="File-input">
+        <label>
+          <span id="Patch-Text">Upload BPS patch</span>
+          <input class="input-button" type="file" id="patchInput" name="patch" accept=".bps">
+        </label>
+      </div>
+    </div>
+    <!-- Patch confirmation -->
+    <div class="Confirmation">
+      <span id="Confirmation-Patch" style="display: none;">Invalid SMB2 BPS patch</span>
+    </div>
+
+    <!-- Patch button -->
+    <button id="Patch">Apply patch</button>
+  </div>
+
+  <!-- Credit -->
+  <div id="Credit">
+    <div>
+      <a href="https://github.com/Producks/Dynamic-SMB2-US-patcher">Source code</a>
+    </div>
+    <div>
+      Rom patcher JS by
+      <small>
+        <a href="https://www.marcrobledo.com/">Marc Robledo</a>
+      </small>
+    </div>
+  </div>
+
+  <script src="HashCalculator.js"></script>
+  <script src="BinFile.js"></script>
+  <script src="RomPatcher.format.bps.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
